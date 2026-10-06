@@ -1,7 +1,8 @@
 -- TALLER PRÁCTICO DE SQL
 -- Tabla: estudiantes
+
 -- Eliminar Tabla
-drop table estudiantes;
+drop table if exists estudiantes;
 
 -- PARTE 1: CREAR LA TABLA ESTUDIANTES
 create table estudiantes(
@@ -39,7 +40,7 @@ insert into estudiantes values(9, 'Luis', 'Ramirez', 13, 'Ciencias Naturales', '
 
 insert into estudiantes values(10, 'Daniela', 'Torres', 17, 'Estudios Sociales', '2026-03-15');
 
-insert into estudiantes values(11, 'Carlos', 'Herrera', 16, 'Matematicas', '2026-03-20');
+insert into estudiantes values(11, 'Carlos', 'Herrera', 16, 'Programacion', '2026-01-01');
 
 insert into estudiantes values(12, 'Andrea', 'Vargas', 15, 'Lengua y Literatura', '2026-04-01');
 
@@ -52,30 +53,115 @@ insert into estudiantes values(15, 'Luis', 'Ramirez', 13, 'Ingles', '2026-04-30'
 -- PARTE 4: CONSULTAS SELECT
 --1. Mostrar todos los registros
 select * from estudiantes;
+
 --2. Mostrar nombre y cursos
 select nombres, curso from estudiantes;
+
 --3. Mostrar estudiantes > a 18 años
 select * from estudiantes where edad > 18;
+
 --4 Mostrar estudiantes entre 18 a 25 años
 select * from estudiantes where edad between 18 and 25;
+
 --5 Mostrar estudiantes de Base de datos 
 select * from estudiantes where curso = 'Base de Datos';
---6. Mostrar estudiante resgitrado despues 2026-03-06
-select * from estudiantes where fecha_registro > '2026-03-06';
---7. Mostrar estudiante resgitrado entre 2026-01-01 y 2026-04-30
+
+--6. Mostrar estudiante registrado despues 2026-03-01
+select * from estudiantes where fecha_registro > '2026-03-01';
+
+--7. Mostrar estudiante registrado entre 2026-01-01 y 2026-04-30
 select * from estudiantes where fecha_registro between '2026-01-01' and '2026-04-30';
+
 
 -- PARTE 5: UPDATE
 -- 1. Cambiar la materia del estudiante 1
-update estudiantes set curso = 'Ciencias Naturales'where id_estudiante = 1;
+update estudiantes set curso = 'Ciencias Naturales' where id_estudiante = 1;
+
 -- 2. Cambiar edad con el id 
 update estudiantes set edad = 50 where id_estudiante = 2;
+
 -- 3. Cambiar la fecha de registro del estudiante 3
 update estudiantes set fecha_registro = '2026-05-05' where id_estudiante = 3;
+
 -- 4. Cambiar la edad y la materia del estudiante 4
 update estudiantes set edad = 16, curso = 'Matematicas' where id_estudiante = 4;
+
 -- 5. Cambiar el nombre y apellido del estudiante 5
-update estudiantes
-set nombres = 'Luis', apellidos = 'Gonzalez' where id_estudiante = 5;
+update estudiantes set nombres = 'Luis', apellidos = 'Gonzalez' where id_estudiante = 5;
 
 
+-- PARTE 6: DELETE
+-- 1. Eliminar estudiante por ID
+delete from estudiantes where id_estudiante = 15;
+
+-- 2. Eliminar un estudiante con una materia 
+delete from estudiantes where id_estudiante = 14 and curso = 'Base de Datos';
+
+-- 3. Eliminar estudiante por edad
+delete from estudiantes where id_estudiante = 13 and edad = 17;
+
+-- 4. Eliminar otro estudiante por fecha de registro
+delete from estudiantes where id_estudiante = 8 and fecha_registro = '2026-03-01';
+
+-- 5. Eliminar estudiante por materia y edad
+delete from estudiantes where id_estudiante = 11 and curso = 'Programacion' and edad = 16;
+
+
+-- PARTE 7: MODIFICACIÓN DE LA TABLA
+-- Agregar la columna correo
+alter table estudiantes add column correo varchar(100);
+
+
+-- PARTE 8: ACTUALIZAR INFORMACIÓN
+-- Actualizar el correo de un estudiante
+update estudiantes set correo = 'juan.perez@colegio.com' where id_estudiante = 1;
+
+-- Actualizar la edad y el correo de un estudiante
+update estudiantes set edad = 18, correo = 'maria.gomez@colegio.com' where id_estudiante = 2;
+
+-- Actualizar el correo de un estudiante
+update estudiantes set correo = 'carlos.herrera@gmail.com' where id_estudiante = 3;
+
+-- Actualizar el correo de un estudiante
+update estudiantes set correo = 'ana.lopez@gmail.com' where id_estudiante = 4;
+
+-- Actualizar el correo de un estudiante
+update estudiantes set correo = 'luis.gonzalez@gmail.com' where id_estudiante = 5;
+
+-- Actualizar el correo de un estudiante
+update estudiantes set correo = 'sofia.castro@gmail.com' where id_estudiante = 6;
+
+-- Actualizar el correo de un estudiante
+update estudiantes set correo = 'juan.perez2@gmail.com' where id_estudiante = 7;
+
+-- Actualizar el correo de un estudiante
+update estudiantes set correo = 'luis.ramirez@gmail.com' where id_estudiante = 9;
+
+-- Actualizar el correo de un estudiante
+update estudiantes set correo = 'daniela.torres@gmail.com' where id_estudiante = 10;
+
+-- Actualizar el correo de un estudiante
+update estudiantes set correo = 'andrea.vargas@gmail.com' where id_estudiante = 12;
+
+-- Mostrar nombres, curso y correo
+select nombres, curso, correo from estudiantes;
+
+-- Mostrar estudiantes mayores de 18 años con su correo
+select nombres, apellidos, edad, correo from estudiantes where edad > 18;
+
+
+-- PARTE 9: CONSULTAS CON FECHAS
+-- 1. Estudiantes registrados después del 2026-02-01
+select * from estudiantes where fecha_registro > '2026-02-01';
+
+-- 2. Estudiantes registrados antes del 2026-05-01
+select * from estudiantes where fecha_registro < '2026-05-01';
+
+-- 3. Estudiantes registrados entre 2026-02-01 y 2026-04-30
+select * from estudiantes where fecha_registro between '2026-02-01' and '2026-04-30';
+
+-- 4. Estudiantes registrados exactamente el 2026-03-15
+select * from estudiantes where fecha_registro = '2026-03-15';
+
+-- 5. Estudiantes de Programacion registrados después del 2026-01-01
+select * from estudiantes where curso = 'Programacion' and fecha_registro > '2026-01-01';
