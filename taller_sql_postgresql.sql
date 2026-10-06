@@ -50,8 +50,7 @@ insert into estudiantes values(14, 'Sofia', 'Castro', 14, 'Base de Datos', '2026
 insert into estudiantes values(15, 'Luis', 'Ramirez', 13, 'Ingles', '2026-04-30');
 
 -- PARTE 4: CONSULTAS SELECT
-
--- 1. Mostrar todos los registros
+--1. Mostrar todos los registros
 select * from estudiantes;
 --2. Mostrar nombre y cursos
 select nombres, curso from estudiantes;
@@ -65,5 +64,18 @@ select * from estudiantes where curso = 'Base de Datos';
 select * from estudiantes where fecha_registro > '2026-03-06';
 --7. Mostrar estudiante resgitrado entre 2026-01-01 y 2026-04-30
 select * from estudiantes where fecha_registro between '2026-01-01' and '2026-04-30';
+
+-- PARTE 5: UPDATE
+-- 1. Cambiar la materia del estudiante 1
+update estudiantes set curso = 'Ciencias Naturales'where id_estudiante = 1;
+-- 2. Cambiar edad con el id 
+update estudiantes set edad = 50 where id_estudiante = 2;
+-- 3. Cambiar la fecha de registro del estudiante 3
+update estudiantes set fecha_registro = '2026-05-05' where id_estudiante = 3;
+-- 4. Cambiar la edad y la materia del estudiante 4
+update estudiantes set edad = 16, curso = 'Matematicas' where id_estudiante = 4;
+-- 5. Cambiar el nombre y apellido del estudiante 5
+update estudiantes
+set nombres = 'Luis', apellidos = 'Gonzalez' where id_estudiante = 5;
 
 
